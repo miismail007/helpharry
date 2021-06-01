@@ -8,7 +8,7 @@ const app = express();
 var cors = require("cors");
 
 // Routers
-const UsersRouter = require("./routes/Users");
+const UsersRouter = require("./routes/users");
 const SchedulesRouter = require("./routes/Schedules");
 const RestrictionsRouter = require("./routes/Restrictions");
 
