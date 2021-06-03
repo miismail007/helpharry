@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const Users = require("./models/Users");
 
-module.exports = function (req, res, next) {
+module.exports = async function (req, res, next)  {
   if (req.headers.authorization === undefined) {
     return res.json({
       Httpcode: 401,
@@ -18,8 +19,19 @@ module.exports = function (req, res, next) {
     }
     try {
       const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-      req.body = { ...req.body, decoded };
-      next();
+      console.log(decoded.id);
+      const users = await Users.find();      
+      users.map(user => {
+        if(user._id === decoded.id){
+          req.body = { ...req.body, decoded };
+          next();
+        }else{
+          res.json({
+            Httpcode: 401,
+            Message: "Token Not Valid",
+          });
+        }
+      })
     } catch (error) {
       res.json({
         Httpcode: 401,
