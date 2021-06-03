@@ -19,10 +19,9 @@ module.exports = async function (req, res, next)  {
     }
     try {
       const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-      console.log(decoded.id);
       const users = await Users.find();      
       users.map(user => {
-        if(user._id === decoded.id){
+        if(user._id == decoded.id){
           req.body = { ...req.body, decoded };
           next();
         }else{
