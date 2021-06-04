@@ -43,7 +43,7 @@ router.post("/apps_non_work_time",auth, async (req, res) => {
             })
             res.json({
                 Httpcode: 200,
-                Message: "Work Time Apps Added Successfully",
+                Message: "Non Work Time Apps Added Successfully",
             });
         }else{
             res.json({
@@ -91,7 +91,7 @@ router.post("/update_non_work_time",auth, async (req, res) => {
             })
             res.json({
                 Httpcode: 200,
-                Message: "Non Work Time App deleted Successfully",
+                Message: "Non Work Time App updated Successfully",
             });
         }else{
             res.json({
